@@ -1,5 +1,5 @@
 #include<iostream>
-#include "hangman_functions.h"
+#include "func2.h"
 #include <vector>
 using namespace std;
 
@@ -7,9 +7,12 @@ using namespace std;
 int main()
 {
     greet();
-
-    string codeword = "coding";
-    string answer = "______";
+    
+    std::pair<std::string, std::string> code = getRandomWord();
+    string hint =code.second;
+    string codeword = code.first;
+    //string codeword = getRandomWord();
+    string answer = generateUnderscoreString(codeword.length());
     int misses = 0;
     vector<char> incorrect;
     bool guess = false;
@@ -20,7 +23,7 @@ int main()
     {
         display_misses(misses);
         display_status(incorrect , answer);
-
+        cout<<"\nHint: "<< hint << "\n";
         cout<< "\n\nPlease enter your guess: ";
         cin>> letter;
 
